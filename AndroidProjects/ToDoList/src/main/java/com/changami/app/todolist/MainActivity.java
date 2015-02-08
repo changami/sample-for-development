@@ -1,19 +1,50 @@
 package com.changami.app.todolist;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    ListView listView;
+    MyAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
+        mAdapter = new MyAdapter(this);
+
+        // get Layout's list_view to listView
+        listView = (ListView) findViewById(R.id.list_view);
+        listView.setAdapter(mAdapter);
+
+        // get Layout's add_button to addButton
+        Button addButton = (Button) findViewById(R.id.add_button);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListData listData = new ListData();
+
+                EditText todoNameForm = (EditText) findViewById(R.id.todo_name_edit);
+                String todoName = todoNameForm.getText().toString();
+                if (todoName.length() == 0) return;
+                listData.setTextData(todoName);
+
+                mAdapter.insert(listData, 0);
+                listView.setAdapter(mAdapter);
+                // clearing input form
+                todoNameForm.setText("");
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
