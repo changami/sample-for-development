@@ -25,9 +25,12 @@ public class MyAdapter extends ArrayAdapter<ListData> {
         }
 
         ListData item = getItem(position);
-        // get the TextView, and set input String
+        // get the TextView to display item_label, and set value
         TextView itemLabel = (TextView) convertView.findViewById(R.id.item_label);
         itemLabel.setText(item.getTextData());
+        // get the TextView to display item_time, and set value
+        TextView itemTime = (TextView) convertView.findViewById(R.id.item_time);
+        itemTime.setText(item.getAddingDateTime());
         // get the Button, and set ClickListener
         Button deleteButton = (Button) convertView.findViewById(R.id.delete_button);
         deleteButton.setOnClickListener(new View.OnClickListener() {
