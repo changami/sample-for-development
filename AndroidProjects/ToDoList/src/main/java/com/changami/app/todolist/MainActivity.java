@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.Date;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -37,6 +39,8 @@ public class MainActivity extends ActionBarActivity {
                 String todoName = todoNameForm.getText().toString();
                 if (todoName.length() == 0) return;
                 listData.setTextData(todoName);
+
+                listData.setAddingDateTime(new Date());
 
                 mAdapter.insert(listData, 0);
                 listView.setAdapter(mAdapter);
