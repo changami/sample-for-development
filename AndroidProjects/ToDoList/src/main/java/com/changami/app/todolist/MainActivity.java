@@ -42,7 +42,7 @@ public class MainActivity extends ActionBarActivity {
 
                 listData.setAddingDateTime(new Date());
 
-                mAdapter.insert(listData, 0);
+                mAdapter.insert(listData);
                 listView.setAdapter(mAdapter);
                 // clearing input form
                 todoNameForm.setText("");
