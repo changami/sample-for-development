@@ -1,7 +1,17 @@
+#include <stdio.h>
+
+#define READING_MODE "r+"
+#define CREATING_MODE "w+"
+
 int execOptimizationCSS(char *HTMLFilePath, char *CSSFilePath, char *newCSSFilePathToCreate) {
-    // Open HTML file (READING_MODE) As htmlOrg
-    // Open CSS file (READING_MODE) As cssOrg
-    // Open new CSS file (CREATING_MODE) As cssNew
+    FILE *htmlOrg, *cssOrg, *cssNew;
+    htmlOrg = fopen(HTMLFilePath, READING_MODE);
+    cssOrg = fopen(CSSFilePath, READING_MODE);
+    cssNew = fopen(newCSSFilePathToCreate, CREATING_MODE);
+    if (htmlOrg == NULL || cssOrg == NULL || cssNew == NULL) {
+        printf("The files couldn't open...\n");
+        return -1;
+    }
 
     // ------- Loop -------
     // Cursor moves to first in HTML
@@ -12,7 +22,9 @@ int execOptimizationCSS(char *HTMLFilePath, char *CSSFilePath, char *newCSSFileP
     //     Write the target block to new CSS file
     // ------- End --------
 
-    // Close all files
+    fclose(htmlOrg);
+    fclose(cssOrg);
+    fclose(cssNew);
 
     return 0;
 }
