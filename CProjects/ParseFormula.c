@@ -85,17 +85,17 @@ int main() {
         return 0;
     }
 
-    int *numbers;
+    double *numbers;
     char *operators;
     int numbersSize = 0, operatorsSize = 0, doneIndex = 0;
-    numbers = (int *) malloc(sizeof(int) * numbersSize);
+    numbers = (double *) malloc(sizeof(double) * numbersSize);
     operators = (char *) malloc(sizeof(char) * operatorsSize);
 
     for (int i = 0; i < MAXIMUM_MEMORY_SIZE; i++) {
         if (isdigit(inputString[i]) || inputString[i] == ' ') { //数字がきたとき
             continue;
         } else if (isOperator(inputString[i]) && i != 0 && i != doneIndex) { //演算子がきたとき
-            numbers = (int *) realloc(numbers, sizeof(int) * ++numbersSize);
+            numbers = (double *) realloc(numbers, sizeof(double) * ++numbersSize);
             operators = (char *) realloc(operators, sizeof(char) * ++operatorsSize);
 
             if (numbers == NULL || operators == NULL) {
@@ -117,7 +117,7 @@ int main() {
 
             doneIndex = i + 1;
         } else if (inputString[i] == '\0') { //一番最後の数字を取りたいとき
-            numbers = (int *) realloc(numbers, sizeof(int) * ++numbersSize);
+            numbers = (double *) realloc(numbers, sizeof(double) * ++numbersSize);
 
             char temp[MAXIMUM_MEMORY_SIZE];
             memset(temp, '\n', MAXIMUM_MEMORY_SIZE);
@@ -184,7 +184,7 @@ int main() {
         }
     }
 
-    printf("The answer is: %d\n", numbers[0]);
+    printf("The answer is: %lf\n", numbers[0]);
 
     free(numbers);
     free(operators);
