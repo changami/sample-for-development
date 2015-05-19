@@ -136,6 +136,10 @@ int main() {
                     numbers[i] = numbers[i] * numbers[i + 1];
                     break;
                 case '/':
+                    if (numbers[i + 1] == 0) {
+                        printf("We can't divide by 0.\n");
+                        exit(EXIT_FAILURE);
+                    }
                     numbers[i] = numbers[i] / numbers[i + 1];
                     break;
                 default:
