@@ -109,7 +109,7 @@ stack<string> InputHTMLFile::getAllOpeningTypeOfTags() {
         returnStack.pop();
     }
 
-    // reversing for keep index
+    // reverse for keeping index
     while (!preserveForReverse.empty()) {
         returnStack.push(getTypeOfTag(preserveForReverse.top()));
         preserveForReverse.pop();

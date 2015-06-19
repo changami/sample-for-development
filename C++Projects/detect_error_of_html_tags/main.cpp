@@ -22,6 +22,9 @@ int main() {
         stackForOpening.pop();
         queueForClosing.pop();
     }
+    if (!stackForOpening.empty() || !queueForClosing.empty()) {
+        errorFlag = true;
+    }
 
     if (errorFlag) {
         cout << "This file has error about tags." << endl;
