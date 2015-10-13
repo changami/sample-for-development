@@ -4,31 +4,43 @@
 
 #include <iostream>
 
-using std::string;
-
 class Node {
-    string data;
+    int data;
     Node *left;
     Node *right;
 
-    void addLeft(string);
+    void addLeft(const int &);
 
-    void addRight(string);
+    void addRight(const int &);
 
 public:
     Node();
 
-    Node(string);
+    Node(const int &);
 
     ~Node();
 
-    int addData(string);
+    int addData(const int &);
 
-    bool isData(string);
+    bool isData(const int &);
+
+    int getData();
+
+    Node *getLeft();
+
+    Node *getRight();
+
+    bool hasLeft();
+
+    bool hasRight();
 
     void output();
 
-    void sortedPrint(Node *);
+    void inOrderTraversal(Node *);
+
+    void postOrderTraversal(Node *);
+
+    void preOrderTraversal(Node *);
 };
 
 class BinaryTree {
@@ -36,13 +48,19 @@ class BinaryTree {
 public:
     BinaryTree();
 
-    BinaryTree(string);
+    BinaryTree(const int &);
 
     ~BinaryTree();
 
-    int addData(string);
+    int addData(const int &);
 
-    void sortedPrint();
+    void inOrderPrint();
+
+    void postOrderPrint();
+
+    void preOrderPrint();
+
+    void find(const int &);
 };
 
 #endif //IMPLEMENT_BINARY_TREE_BINARYTREE_H

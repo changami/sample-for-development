@@ -1,25 +1,25 @@
 #include "BinaryTree.h"
 
-void Node::addLeft(string left) {
+void Node::addLeft(const int &left) {
     Node *leftNode;
     leftNode = new Node(left);
     this->left = leftNode;
 }
 
-void Node::addRight(string right) {
+void Node::addRight(const int &right) {
     Node *rightNode;
     rightNode = new Node(right);
     this->right = rightNode;
 }
 
 Node::Node() {
-    this->data = "";
+    this->data = NULL;
     this->left = NULL;
     this->right = NULL;
 }
 
-Node::Node(string data) {
-    this->data = data;
+Node::Node(const int &root) {
+    this->data = root;
     this->left = NULL;
     this->right = NULL;
 }
@@ -29,10 +29,10 @@ Node::~Node() {
     if (this->left != NULL) delete this->left;
 }
 
-int Node::addData(string data) {
+int Node::addData(const int &data) {
     int ret;
 
-    if (this->data == "") {
+    if (this->data == NULL) {
         this->data = data;
         ret = 1;
     } else if (this->data > data) {
@@ -56,7 +56,7 @@ int Node::addData(string data) {
     return ret;
 }
 
-bool Node::isData(string data) {
+bool Node::isData(const int &data) {
     bool ret;
 
     if (this->data > data) {
@@ -78,16 +78,56 @@ bool Node::isData(string data) {
     return ret;
 }
 
-void Node::output() {
-    std::cout << this->data << std::endl;
+int Node::getData() {
+    return this->data;
 }
 
-void Node::sortedPrint(Node *node) {
+Node *Node::getLeft() {
+    return this->left;
+}
+
+Node *Node::getRight() {
+    return this->right;
+}
+
+bool Node::hasLeft() {
+    return this->left != NULL;
+}
+
+bool Node::hasRight() {
+    return this->right != NULL;
+}
+
+void Node::output() {
+    std::cout << this->data << " ";
+}
+
+void Node::inOrderTraversal(Node *node) {
     if (node->left != NULL) {
-        node->sortedPrint(node->left);
+        node->inOrderTraversal(node->left);
     }
     node->output();
     if (node->right != NULL) {
-        node->sortedPrint(node->right);
+        node->inOrderTraversal(node->right);
+    }
+}
+
+void Node::postOrderTraversal(Node *node) {
+    if (node->left != NULL) {
+        node->postOrderTraversal(node->left);
+    }
+    if (node->right != NULL) {
+        node->postOrderTraversal(node->right);
+    }
+    node->output();
+}
+
+void Node::preOrderTraversal(Node *node) {
+    node->output();
+    if (node->left != NULL) {
+        node->preOrderTraversal(node->left);
+    }
+    if (node->right != NULL) {
+        node->preOrderTraversal(node->right);
     }
 }
